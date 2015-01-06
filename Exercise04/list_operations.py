@@ -23,57 +23,56 @@ def head(input_list):
         Return the first element of the input list.
         [ A, B, C, D, E, F ] --> A
     """
-    pass
+    return input_list[0]
 
 def tail(input_list):
     """
         Return all elements of the input list except the first.
         [ A, B, C, D ] --> [ B, C, D ]
     """
-    pass
+    return input_list[1:]
 
 def last(input_list):
     """
         Return the last element of the input list.
         [ A, B, C, D ] --> D
     """
-    pass
+    return input_list[-1]
 
 def init(input_list):
     """
         Return all elements of the input list except the last.
         [ A, B, C, D ] --> [ A, B, C ]
     """
-    pass
+    return input_list[:-1]
 
 def first_three(input_list):
     """
         Return the first three elements of the input list.
         [ A, B, C, D, E, F ] --> [ A, B, C ]
     """
-    pass
+    return input_list[0:3]
 
 def last_five(input_list):
     """
         Return the last five elements of the input list.
         [ A, B, C, D, E, F ] --> [ B, C, D, E, F ]
     """
-    pass
+    return input_list[-5:]
 
 def middle(input_list):
     """
         Return all elements of the input list except the first two and the last two.
         [ A, B, C, D, E, F ] --> [ C, D ]
     """
-    pass
+    return input_list[2:-2]
 
 def inner_four(input_list):
     """
         Return the third, fourth, fifth, and sixth elements of the input list.
         [ A, B, C, D, E, F, G ] --> [ C, D, E, F ]
     """
-
-    pass
+    return input_list[2:6]
 
 def inner_four_end(input_list):
     """
@@ -81,21 +80,24 @@ def inner_four_end(input_list):
         list, in that order.
         [ A, B, C, D, E, F, G ] --> [ F, E, D, C ]
     """
-    pass
+    return input_list[-6:-2]
 
 def replace_head(input_list):
     """
         Replace the head of the input list with the value 42.
         [ A, B, C, D ] --> [ 42, B, C, D]
     """
-    pass
+    input_list[0] = 42
+    return input_list
 
 def replace_third_and_last(input_list):
     """
         Replace the third and last elements of the input list with the value 37.
         [ A, B, C, D, E, F ] --> [ A, B, 37, D, E, 37 ]
     """
-    pass
+    input_list[2] = 37
+    input_list[-1] = 37
+    return input_list
 
 def replace_middle(input_list):
     """
@@ -103,15 +105,17 @@ def replace_middle(input_list):
         that order, except for the first two and last two elements.
         [ A, B, C, D, E, F, G, H, I ] --> [ A, B, 42, 37, H, I ] 
     """
-
-    pass
+    input_list[2:-2] = [42, 37]
+    return input_list
 
 def delete_third_and_seventh(input_list):
     """
         Remove the third and seventh elements of the input list.
         [ A, B, C, D, E, F, G, H ] --> [ A, B, D, E, F, H ]
     """
-    pass
+    del input_list[6]
+    del input_list[2]
+    return input_list
 
 def delete_middle(input_list):
     """
@@ -119,7 +123,8 @@ def delete_middle(input_list):
         last two.
          [ A, B, C, D, E, F, G, H ] --> [ A, B, G, H ]
     """
-    pass
+    del input_list[2:-2]
+    return input_list
 
 """
 Part 1 is finished! Ask for a code review before proceeding to Part 2.
@@ -145,7 +150,11 @@ def custom_len(input_list):
     """
         like len(input_list), should return the number of items in the list
     """
-    pass
+    i = 0
+    x = 0
+    for i in input_list:
+        x = x + 1
+        return x
 
 # For the next four functions, get clever using slice operations described in the first half
 def custom_append(input_list, value):
@@ -153,70 +162,114 @@ def custom_append(input_list, value):
         like input_list.append(value), should add the value to the end of the list
         and return nothing
     """
-    pass
+    x = custom_len(input_list)
+    input_list[x:] = value
+    return input_list
+    
 
 def custom_extend(input_list, second_list):
     """
         like input_list.extend(second_list), should append every item in the second 
         list to the end of the first list and return nothing
     """
-    pass
-
+    x = custom_len(input_list)
+    input_list[x:] = [second_list]
+    
 def custom_insert(input_list, index, value):
     """
         like input_list.insert(index, value), should insert (not replace) the value
         at the specified index of the input list and return nothing
     """
-    pass
+    input_list[index:index] = [value]
 
 def custom_remove(input_list, value):
     """
         like input_list.remove(value), should remove the first item of the 
         value specified and return nothing
     """
-    pass
+    x = 0
+    for i in input_list:
+        if i == value:
+            del input_list[x]
+            break
+        else:
+            x = x + 1
 
 def custom_pop(input_list):
     """
         like input_list.pop(), should remove the last item in the list and 
         return it
     """
-    pass
+    last = input_list[-1]
+    del input_list[-1]
+    return last
 
 def custom_index(input_list, value):
     """
         like input_list.index(value), should return the index of the first item 
         which matches the specified value
     """
-    pass
+    x = 0
+    for i in input_list:
+        if input_list[x] == value:
+            return x
+        else: x = x + 1
 
 def custom_count(input_list, value):
     """
         like input_list.count(value), should return the number of times the specified
         value appears in the list.
     """
-    pass
+    i = 0
+    x = 0
+    for i in input_list:
+        if i == value:
+            x = x + 1
+    return x
 
 def custom_reverse(input_list):
     """
         like input_list.reverse(), should reverse the elements of the original list
         and return nothing (we call this reversing "in place")
     """
-    pass
+    #get length of list and divide in half to find middle
+    x = int(custom_len(input_list) / 2)
+    for i in range(x):
+        #create temp variable to hold values
+        temp = input_list[i]
+        #set index to last
+        input_list[i] = input_list[-1-i]
+        #set last index to temp
+        input_list[-1-i] = temp
+
 
 def custom_contains(input_list, value):
     """
         like (value in input_list), should return True if the list contains the
         specified value and False if it does not 
     """
-    pass
+    for i in input_list:
+        if i == value:
+            return True
+        else: 
+            return False
 
 def custom_equality(some_list, another_list):
     """
         like (some_list == another_list), should return True if both lists contain
         the same values in the same indexes
     """
-    pass
+    if custom_len(some_list) != custom_len(another_list):
+        return False
+    else: 
+        x = 0
+        while x < custom_len(some_list):
+            for i in some_list:
+                if some_list[x] != another_list[x]:
+                    return False
+                else:
+                    x = x + 1
+        return True
 
 """
 Part 2 is finished! Required: Ask for a code review. Optional: High-Five
