@@ -24,16 +24,28 @@ def main():
 			else:
 
 				if tokens[0] == "+":
-					print(add(int(tokens[1]),(int(tokens[2]))))
+					if len(tokens) < 3:
+						print "Please enter two values"
+					else:	
+						print(add(int(tokens[1]),(int(tokens[2]))))
 
 				elif tokens[0] == "-":
-					print(subtract(int(tokens[1]),(int(tokens[2]))))
+					if len(tokens) < 3:
+						print "Please enter two values"
+					else:
+						print(subtract(int(tokens[1]),(int(tokens[2]))))
 
 				elif tokens[0] == "*":
-					print(multiply(int(tokens[1]),(int(tokens[2]))))
+					if len(tokens) < 3:
+						print "Please enter two values"
+					else:
+						print(multiply(int(tokens[1]),(int(tokens[2]))))
 
 				elif tokens[0] == "/":
-					print(divide(int(tokens[1]),(int(tokens[2]))))
+					if len(tokens) < 3:
+						print "Please enter two values"
+					else:
+						print(divide(int(tokens[1]),(int(tokens[2]))))
 
 				elif tokens[0] == "square":
 					print(square(int(tokens[1])))
@@ -42,10 +54,16 @@ def main():
 					print(cube(int(tokens[1])))
 
 				elif tokens[0] == "mod":
-					print(mod(int(tokens[1]),(int(tokens[2]))))
+					if len(tokens) < 3:
+						print "Please enter two values"
+					else:
+						print(mod(int(tokens[1]),(int(tokens[2]))))
 
 				elif tokens[0] == "power":
-					print(power(int(tokens[1]),(int(tokens[2]))))
+					if len(tokens) < 3:
+						print "Please enter two values"
+					else:
+						print(power(int(tokens[1]),(int(tokens[2]))))
 
 		except ValueError:
 			print "I don't understand. Please enter a valid math problem or press q to quit."
