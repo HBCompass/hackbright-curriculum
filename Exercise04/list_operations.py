@@ -154,7 +154,7 @@ def custom_len(input_list):
     x = 0
     for i in input_list:
         x = x + 1
-        return x
+    return x
 
 # For the next four functions, get clever using slice operations described in the first half
 def custom_append(input_list, value):
@@ -163,7 +163,7 @@ def custom_append(input_list, value):
         and return nothing
     """
     x = custom_len(input_list)
-    input_list[x:] = value
+    input_list[x:] = [value]
     return input_list
     
 
@@ -173,7 +173,7 @@ def custom_extend(input_list, second_list):
         list to the end of the first list and return nothing
     """
     x = custom_len(input_list)
-    input_list[x:] = [second_list]
+    input_list[x:] = second_list
     
 def custom_insert(input_list, index, value):
     """
@@ -251,26 +251,19 @@ def custom_contains(input_list, value):
     for i in input_list:
         if i == value:
             return True
-        else: 
-            return False
 
 def custom_equality(some_list, another_list):
     """
         like (some_list == another_list), should return True if both lists contain
         the same values in the same indexes
     """
-    if custom_len(some_list) != custom_len(another_list):
-        return False
-    else: 
+    while custom_len(some_list) == custom_len(another_list):
         x = 0
-        while x < custom_len(some_list):
-            for i in some_list:
-                if some_list[x] != another_list[x]:
-                    return False
-                else:
-                    x = x + 1
-        return True
-
+        for i in some_list:
+            if some_list[x] == another_list[x]:
+                return True
+            else:
+                x = x + 1
 """
 Part 2 is finished! Required: Ask for a code review. Optional: High-Five
 """
